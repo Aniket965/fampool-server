@@ -5,7 +5,6 @@ var enc = parser.urlencoded({
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-var http = require('http');
 
 /*
  * Schema for database
@@ -33,9 +32,12 @@ var data = {
 /* for adding data to database*/
 app.get('/adddataprojects:data', enc, function (req, res) {
     var pro = mongoose.model('pro', Schema);
-    
+
      var item = pro(finddata(req.params.data)).save(function (err) {
          if (err) throw err;
+         
+         console.log(finddata(req.params.data))
+
 
      });
 
@@ -53,15 +55,11 @@ function finddata(data) {
    return {id : id,
        title :title,
        eventLocation : eventLocation,
-       Date :dates
+       Date :date
     }
 } 
 
 
  
 var port = process.env.PORT || 1337;
-
- http.createServer(function(req, res) {
-   res.writeHead(200, { 'Content-Type': 'text/plain' });
-   res.end('Hello World\n');
- }).listen(port);
+app.listen(port);
