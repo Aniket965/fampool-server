@@ -5,6 +5,7 @@ var enc = parser.urlencoded({
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var http = require('http');
 
 /*
  * Schema for database
@@ -52,11 +53,15 @@ function finddata(data) {
    return {id : id,
        title :title,
        eventLocation : eventLocation,
-       Date :date
+       Date :dates
     }
 } 
 
 
  
 var port = process.env.PORT || 1337;
-app.listen(port);
+
+ http.createServer(function(req, res) {
+   res.writeHead(200, { 'Content-Type': 'text/plain' });
+   res.end('Hello World\n');
+ }).listen(port);
