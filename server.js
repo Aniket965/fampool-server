@@ -26,7 +26,7 @@ var data = {
     Date: "22 august"
 };
 
-mongoose.connect('mongodb://aniket965:9818484049as@ds163340.mlab.com:63340/eventlists');
+mongoose.connect('key');
 
 
 /* for adding data to database*/
